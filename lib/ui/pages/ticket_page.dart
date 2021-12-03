@@ -31,7 +31,7 @@ class _TicketPageState extends State<TicketPage> {
                     child: TicketViewer(isExpiredTickets
                         ? ticketState.tickets
                             .where((ticket) =>
-                                ticket.time.isBefore(DateTime.fromMillisecondsSinceEpoch()))
+                                ticket.time.isBefore(DateTime.now()))
                             .toList()
                         : ticketState.tickets
                             .where((ticket) =>
