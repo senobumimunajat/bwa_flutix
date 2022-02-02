@@ -31,7 +31,7 @@ class _TicketPageState extends State<TicketPage> {
                     child: TicketViewer(isExpiredTickets
                         ? ticketState.tickets
                             .where((ticket) =>
-                                ticket.time.isBefore(DateTime.now()))
+                                !ticket.time.isAfter(DateTime.now()))
                             .toList()
                         : ticketState.tickets
                             .where((ticket) =>
@@ -160,8 +160,8 @@ class TicketViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sortedTickets = tickets;
-    sortedTickets
-        .sort((ticket1, ticket2) => ticket1.time.millisecondsSinceEpoch.compareTo(ticket2.time.millisecondsSinceEpoch));
+    sortedTickets.sort((ticket1, ticket2) => ticket1.time.millisecondsSinceEpoch
+        .compareTo(ticket2.time.millisecondsSinceEpoch));
 
     return ListView.builder(
         itemCount: sortedTickets.length,
